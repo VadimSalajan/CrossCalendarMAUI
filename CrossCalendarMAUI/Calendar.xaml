@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Frame
+    x:Class="CrossCalendarMAUI.Calendar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:data="clr-namespace:CrossCalendarMAUI.Data"
+    Margin="20"
+    Padding="10,10,10,40"
+    BackgroundColor="#F5F6FA"
+    VerticalOptions="CenterAndExpand">
+    <Frame.BindingContext>
+        <data:ContextCalendar x:Name="Context" x:FieldModifier="public" />
+    </Frame.BindingContext>
+    <Frame.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="{OnIdiom Desktop='14',Tablet='14',Phone='14'}" />
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </Frame.Resources>
+    <Grid RowDefinitions="{OnIdiom Desktop='148,48,48,48,48,48,48,48',Tablet='148,44,44,44,44,44,44,44',Phone='148,44,44,44,44,44,44,44'}"
+          ColumnDefinitions="{OnIdiom Desktop='48,48,48,48,48,48,48',Tablet='44,44,44,44,44,44,44',Phone='44,44,44,44,44,44,44'}"
+          BackgroundColor="Transparent"
+          ColumnSpacing="0"
+          RowSpacing="0"
+          HorizontalOptions="CenterAndExpand"
+          >
+        <Label Text="{Binding DateText, StringFormat='{0:MMM yyyy}'}" Grid.ColumnSpan="7"
+                   VerticalTextAlignment="Center"
+                   TranslationY="-2"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="22"
+                   />
+        <Path Data="M400,880L0,480L400,80L456,137L113,480L456,823L400,880Z"
+                  Grid.ColumnSpan="2"
+                  Grid.Column="2"
+                  Stroke="Black"
+                  Scale="0.4"
+                  WidthRequest="48"
+                  TranslationX="60"
+                  HorizontalOptions="End"
+                  Fill="Black"
+                  Aspect="Uniform"
+                  />
+        <Path Data="M304,878L248,821L591,478L248,135L304,78L704,478L304,878Z"
+                  Grid.ColumnSpan="2"
+                  Grid.Column="4"
+                  Stroke="Black"
+                  Scale="0.4"
+                  WidthRequest="48"
+                  TranslationX="60"
+                  HorizontalOptions="EndAndExpand"
+                  Fill="Black"
+                  Aspect="Uniform"
+                  />
+        <Button Clicked="ButtonPrevDate_Clicked"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    VerticalOptions="Center"
+                    HeightRequest="48"
+                    WidthRequest="48"
+                    TranslationX="60"
+                    />
+        <Button Clicked="ButtonNextDate_Clicked"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Grid.Column="4"
+                    Grid.ColumnSpan="2"
+                    VerticalOptions="Center"
+                    HeightRequest="48"
+                    WidthRequest="48"
+                    TranslationX="60"
+                    />
+        <Label x:Name="titleLabel" 
+               x:FieldModifier="public"
+               Grid.Row="1" 
+               Grid.ColumnSpan="7"
+               TextColor="Black"
+               
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               Text="{Binding Title}"
+               />
+        <Label Grid.Row="2" Grid.Column="0"
+               Text="{Binding Sunday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" Grid.Column="1"
+               Text="{Binding Monday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" Grid.Column="2"
+               Text="{Binding Tuesday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" Grid.Column="3"
+               Text="{Binding Wednesday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" Grid.Column="4"
+               Text="{Binding Thursday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" Grid.Column="5"
+               Text="{Binding Friday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" 
+               Grid.Column="6"
+               Text="{Binding Saturday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <Label Grid.Row="2" Grid.Column="0"
+               Text="{Binding Sunday}"
+               
+               TextColor="Black"
+               HorizontalTextAlignment="Center"
+               />
+        <BoxView Grid.Row="2" Grid.ColumnSpan="7"
+                 Color="Gray"
+                 HeightRequest="1"
+                 TranslationY="10"
+                 VerticalOptions="Center"
+               />
+
+        <Button Grid.Row="3" Text="{Binding Event00Text}"
+                    AutomationId="{Binding Event00AutomationId}"
+                    TextColor="{Binding Event00TextColor}"
+                    BackgroundColor="{Binding Event00BackgroundColor}"
+                    CornerRadius="{Binding Event00CornerRadius}"
+                    Opacity="{Binding Event00Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="3" Grid.Column="1" Text="{Binding Event01Text}"
+                    AutomationId="{Binding Event01AutomationId}"
+                    TextColor="{Binding Event01TextColor}"
+                    BackgroundColor="{Binding Event01BackgroundColor}"
+                    CornerRadius="{Binding Event01CornerRadius}"
+                    Opacity="{Binding Event01Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="3" Grid.Column="2" Text="{Binding Event02Text}"
+                    AutomationId="{Binding Event02AutomationId}"
+                    TextColor="{Binding Event02TextColor}"
+                    BackgroundColor="{Binding Event02BackgroundColor}"
+                    CornerRadius="{Binding Event02CornerRadius}"
+                    Opacity="{Binding Event02Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="3" Grid.Column="3" Text="{Binding Event03Text}"
+                    AutomationId="{Binding Event03AutomationId}"
+                    TextColor="{Binding Event03TextColor}"
+                    BackgroundColor="{Binding Event03BackgroundColor}"
+                    CornerRadius="{Binding Event03CornerRadius}"
+                    Opacity="{Binding Event03Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="3" Grid.Column="4" Text="{Binding Event04Text}"
+                    AutomationId="{Binding Event04AutomationId}"
+                    TextColor="{Binding Event04TextColor}"
+                    BackgroundColor="{Binding Event04BackgroundColor}"
+                    CornerRadius="{Binding Event04CornerRadius}"
+                    Opacity="{Binding Event04Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="3" Grid.Column="5" Text="{Binding Event05Text}"
+                    AutomationId="{Binding Event05AutomationId}"
+                    TextColor="{Binding Event05TextColor}"
+                    BackgroundColor="{Binding Event05BackgroundColor}"
+                    CornerRadius="{Binding Event05CornerRadius}"
+                    Opacity="{Binding Event05Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="3" Grid.Column="6" Text="{Binding Event06Text}"
+                    AutomationId="{Binding Event06AutomationId}"
+                    TextColor="{Binding Event06TextColor}"
+                    BackgroundColor="{Binding Event06BackgroundColor}"
+                    CornerRadius="{Binding Event06CornerRadius}"
+                    Opacity="{Binding Event06Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Text="{Binding Event10Text}"
+                    AutomationId="{Binding Event10AutomationId}"
+                    TextColor="{Binding Event10TextColor}"
+                    BackgroundColor="{Binding Event10BackgroundColor}"
+                    CornerRadius="{Binding Event10CornerRadius}"
+                    Opacity="{Binding Event10Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Grid.Column="1" Text="{Binding Event11Text}"
+                    AutomationId="{Binding Event11AutomationId}"
+                    TextColor="{Binding Event11TextColor}"
+                    BackgroundColor="{Binding Event11BackgroundColor}"
+                    CornerRadius="{Binding Event11CornerRadius}"
+                    Opacity="{Binding Event11Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Grid.Column="2" Text="{Binding Event12Text}"
+                    AutomationId="{Binding Event12AutomationId}"
+                    TextColor="{Binding Event12TextColor}"
+                    BackgroundColor="{Binding Event12BackgroundColor}"
+                    CornerRadius="{Binding Event12CornerRadius}"
+                    Opacity="{Binding Event12Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Grid.Column="3" Text="{Binding Event13Text}"
+                    AutomationId="{Binding Event13AutomationId}"
+                    TextColor="{Binding Event13TextColor}"
+                    BackgroundColor="{Binding Event13BackgroundColor}"
+                    CornerRadius="{Binding Event13CornerRadius}"
+                    Opacity="{Binding Event13Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Grid.Column="4" Text="{Binding Event14Text}"
+                    AutomationId="{Binding Event14AutomationId}"
+                    TextColor="{Binding Event14TextColor}"
+                    BackgroundColor="{Binding Event14BackgroundColor}"
+                    CornerRadius="{Binding Event14CornerRadius}"
+                    Opacity="{Binding Event14Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Grid.Column="5" Text="{Binding Event15Text}"
+                    AutomationId="{Binding Event15AutomationId}"
+                    TextColor="{Binding Event15TextColor}"
+                    BackgroundColor="{Binding Event15BackgroundColor}"
+                    CornerRadius="{Binding Event15CornerRadius}"
+                    Opacity="{Binding Event15Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="4" Grid.Column="6" Text="{Binding Event16Text}"
+                    AutomationId="{Binding Event16AutomationId}"
+                    TextColor="{Binding Event16TextColor}"
+                    BackgroundColor="{Binding Event16BackgroundColor}"
+                    CornerRadius="{Binding Event16CornerRadius}"
+                    Opacity="{Binding Event16Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Text="{Binding Event20Text}"
+                    AutomationId="{Binding Event20AutomationId}"
+                    TextColor="{Binding Event20TextColor}"
+                    BackgroundColor="{Binding Event20BackgroundColor}"
+                    CornerRadius="{Binding Event20CornerRadius}"
+                    Opacity="{Binding Event20Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Grid.Column="1" Text="{Binding Event21Text}"
+                    AutomationId="{Binding Event21AutomationId}"
+                    TextColor="{Binding Event21TextColor}"
+                    BackgroundColor="{Binding Event21BackgroundColor}"
+                    CornerRadius="{Binding Event21CornerRadius}"
+                    Opacity="{Binding Event21Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Grid.Column="2" Text="{Binding Event22Text}"
+                    AutomationId="{Binding Event22AutomationId}"
+                    TextColor="{Binding Event22TextColor}"
+                    BackgroundColor="{Binding Event22BackgroundColor}"
+                    CornerRadius="{Binding Event22CornerRadius}"
+                    Opacity="{Binding Event22Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Grid.Column="3" Text="{Binding Event23Text}"
+                    AutomationId="{Binding Event23AutomationId}"
+                    TextColor="{Binding Event23TextColor}"
+                    BackgroundColor="{Binding Event23BackgroundColor}"
+                    CornerRadius="{Binding Event23CornerRadius}"
+                    Opacity="{Binding Event23Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Grid.Column="4" Text="{Binding Event24Text}"
+                    AutomationId="{Binding Event24AutomationId}"
+                    TextColor="{Binding Event24TextColor}"
+                    BackgroundColor="{Binding Event24BackgroundColor}"
+                    CornerRadius="{Binding Event24CornerRadius}"
+                    Opacity="{Binding Event24Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Grid.Column="5" Text="{Binding Event25Text}"
+                    AutomationId="{Binding Event25AutomationId}"
+                    TextColor="{Binding Event25TextColor}"
+                    BackgroundColor="{Binding Event25BackgroundColor}"
+                    CornerRadius="{Binding Event25CornerRadius}"
+                    Opacity="{Binding Event25Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="5" Grid.Column="6" Text="{Binding Event26Text}"
+                    AutomationId="{Binding Event26AutomationId}"
+                    TextColor="{Binding Event26TextColor}"
+                    BackgroundColor="{Binding Event26BackgroundColor}"
+                    CornerRadius="{Binding Event26CornerRadius}"
+                    Opacity="{Binding Event26Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Text="{Binding Event30Text}"
+                    AutomationId="{Binding Event30AutomationId}"
+                    TextColor="{Binding Event30TextColor}"
+                    BackgroundColor="{Binding Event30BackgroundColor}"
+                    CornerRadius="{Binding Event30CornerRadius}"
+                    Opacity="{Binding Event30Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Grid.Column="1" Text="{Binding Event31Text}"
+                    AutomationId="{Binding Event31AutomationId}"
+                    TextColor="{Binding Event31TextColor}"
+                    BackgroundColor="{Binding Event31BackgroundColor}"
+                    CornerRadius="{Binding Event31CornerRadius}"
+                    Opacity="{Binding Event31Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Grid.Column="2" Text="{Binding Event32Text}"
+                    AutomationId="{Binding Event32AutomationId}"
+                    TextColor="{Binding Event32TextColor}"
+                    BackgroundColor="{Binding Event32BackgroundColor}"
+                    CornerRadius="{Binding Event32CornerRadius}"
+                    Opacity="{Binding Event32Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Grid.Column="3" Text="{Binding Event33Text}"
+                    AutomationId="{Binding Event33AutomationId}"
+                    TextColor="{Binding Event33TextColor}"
+                    BackgroundColor="{Binding Event33BackgroundColor}"
+                    CornerRadius="{Binding Event33CornerRadius}"
+                    Opacity="{Binding Event33Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Grid.Column="4" Text="{Binding Event34Text}"
+                    AutomationId="{Binding Event34AutomationId}"
+                    TextColor="{Binding Event34TextColor}"
+                    BackgroundColor="{Binding Event34BackgroundColor}"
+                    CornerRadius="{Binding Event34CornerRadius}"
+                    Opacity="{Binding Event34Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Grid.Column="5" Text="{Binding Event35Text}"
+                    AutomationId="{Binding Event35AutomationId}"
+                    TextColor="{Binding Event35TextColor}"
+                    BackgroundColor="{Binding Event35BackgroundColor}"
+                    CornerRadius="{Binding Event35CornerRadius}"
+                    Opacity="{Binding Event35Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="6" Grid.Column="6" Text="{Binding Event36Text}"
+                    AutomationId="{Binding Event36AutomationId}"
+                    TextColor="{Binding Event36TextColor}"
+                    BackgroundColor="{Binding Event36BackgroundColor}"
+                    CornerRadius="{Binding Event36CornerRadius}"
+                    Opacity="{Binding Event36Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Text="{Binding Event40Text}"
+                    AutomationId="{Binding Event40AutomationId}"
+                    TextColor="{Binding Event40TextColor}"
+                    BackgroundColor="{Binding Event40BackgroundColor}"
+                    CornerRadius="{Binding Event40CornerRadius}"
+                    Opacity="{Binding Event40Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Grid.Column="1" Text="{Binding Event41Text}"
+                    AutomationId="{Binding Event41AutomationId}"
+                    TextColor="{Binding Event41TextColor}"
+                    BackgroundColor="{Binding Event41BackgroundColor}"
+                    CornerRadius="{Binding Event41CornerRadius}"
+                    Opacity="{Binding Event41Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Grid.Column="2" Text="{Binding Event42Text}"
+                    AutomationId="{Binding Event42AutomationId}"
+                    TextColor="{Binding Event42TextColor}"
+                    BackgroundColor="{Binding Event42BackgroundColor}"
+                    CornerRadius="{Binding Event42CornerRadius}"
+                    Opacity="{Binding Event42Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Grid.Column="3" Text="{Binding Event43Text}"
+                    AutomationId="{Binding Event43AutomationId}"
+                    TextColor="{Binding Event43TextColor}"
+                    BackgroundColor="{Binding Event43BackgroundColor}"
+                    CornerRadius="{Binding Event43CornerRadius}"
+                    Opacity="{Binding Event43Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Grid.Column="4" Text="{Binding Event44Text}"
+                    AutomationId="{Binding Event44AutomationId}"
+                    TextColor="{Binding Event44TextColor}"
+                    BackgroundColor="{Binding Event44BackgroundColor}"
+                    CornerRadius="{Binding Event44CornerRadius}"
+                    Opacity="{Binding Event44Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Grid.Column="5" Text="{Binding Event45Text}"
+                    AutomationId="{Binding Event45AutomationId}"
+                    TextColor="{Binding Event45TextColor}"
+                    BackgroundColor="{Binding Event45BackgroundColor}"
+                    CornerRadius="{Binding Event45CornerRadius}"
+                    Opacity="{Binding Event45Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+        <Button Grid.Row="7" Grid.Column="6" Text="{Binding Event46Text}"
+                    AutomationId="{Binding Event46AutomationId}"
+                    TextColor="{Binding Event46TextColor}"
+                    BackgroundColor="{Binding Event46BackgroundColor}"
+                    CornerRadius="{Binding Event46CornerRadius}"
+                    Opacity="{Binding Event46Opacity}"
+                    
+                    Clicked="ButtonSetDate_Clicked"
+                    />
+    </Grid>
+</Frame>
