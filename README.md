@@ -4,8 +4,8 @@
    FactoryCalendar factory;
 
    public MainPage()
-	 {
-		    InitializeComponent();
+   {
+        InitializeComponent();
         factory = new FactoryCalendar();
         factory.calendar._calendarView.ClickedDate += Calendar_ClickedDate;
     }
