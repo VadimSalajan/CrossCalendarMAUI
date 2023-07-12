@@ -1,6 +1,7 @@
 ﻿using CrossCalendarMAUI.Components;
 using CrossCalendarMAUI.Data;
 using CrossCalendarMAUI.Services;
+using UIKit;
 
 namespace CrossCalendarMAUI
 {
@@ -13,6 +14,8 @@ namespace CrossCalendarMAUI
         {
             ContextCalendar.CornerRadius = 24;
             _calendarView = new Calendar();
+            _calendarView.HasShadow = false;
+            _calendarView.Margin = 0;
         }
 
         public async Task OpenCalendar(ContentPage contentPage = null)
@@ -25,9 +28,19 @@ namespace CrossCalendarMAUI
                 MinimumHeight = 600,
                 MaximumWidth = 440,
                 MinimumWidth = 440,
-                Title = "Calendar",
             };
+            _calendarView.HandlerChanged += _calendarView_HandlerChanged;
             Application.Current.OpenWindow(_calendarView.window);
+        }
+
+        private void _calendarView_HandlerChanged(object sender, EventArgs e)
+        {
+            var win = sender as Microsoft.Maui.Controls.Window;
+            var uiWin = win.Handler.PlatformView as UIWindow;
+            if (uiWin != null)
+            {
+                uiWin.WindowScene.Title = "Calendar";
+            }
         }
     }
 }
