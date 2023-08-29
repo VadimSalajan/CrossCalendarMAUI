@@ -14,9 +14,12 @@
     <Frame.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">
-                <Setter Property="FontSize" Value="{OnIdiom Desktop='14',Tablet='14',Phone='14'}" />
+                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst='18',Android='14',iOS='14',WinUI='14'}" />
                 <Setter Property="BorderColor" Value="Transparent"/>
                 <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst='19',Android='15',iOS='15',WinUI='15'}" />
             </Style>
         </ResourceDictionary>
     </Frame.Resources>
