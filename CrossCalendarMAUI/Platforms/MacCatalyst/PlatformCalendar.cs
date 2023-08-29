@@ -8,19 +8,29 @@ namespace CrossCalendarMAUI
     // All the code in this file is only included on Mac Catalyst.
     public class PlatformCalendar: ICalendar
     {
-        public PopUpCalendar PopUp { get; set; }
         public Calendar _calendarView { get; set; }
 
         public PlatformCalendar()
         {
-            ContextCalendar.CornerRadius = 22;
-            PopUp = new PopUpCalendar();
-            _calendarView = PopUp.calendar;
+            ContextCalendar.CornerRadius = 24;
+            _calendarView = new Calendar();
+            _calendarView.HasShadow = false;
+            _calendarView.Margin = 0;
         }
 
-        public async Task OpenCalendar(ContentPage content)
+        public async Task OpenCalendar(ContentPage contentPage = null)
         {
-            await PopUp.ShowCalendar(content);
+            await Task.Delay(500);
+            _calendarView.window = new Window
+            {
+                Page = new ContentPage { Content = _calendarView, BackgroundColor = Color.FromArgb("#F5F6FA") },
+                MinimumHeight = 600,
+                MaximumHeight = 600,
+                MaximumWidth = 440,
+                MinimumWidth = 440,
+                Title = "Calendar",
+            };
+            Application.Current.OpenWindow(_calendarView.window);
         }
     }
 }

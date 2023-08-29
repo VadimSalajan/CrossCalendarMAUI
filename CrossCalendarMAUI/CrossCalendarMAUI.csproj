@@ -15,7 +15,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageIcon>images.png</PackageIcon>
 		<Title>CrossCalendarMAUI</Title>
 		<Version>1.0.3</Version>
 		<Authors>Salajan Vadim</Authors>
@@ -23,12 +22,5 @@
 		<Copyright>SVC</Copyright>
 		<RepositoryUrl>https://github.com/VadimSalajan/CrossCalendarMAUI</RepositoryUrl>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Include="C:\Users\nbotn\Downloads\images.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
 
 </Project>
