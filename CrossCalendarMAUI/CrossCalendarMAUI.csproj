@@ -17,6 +17,11 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageIcon>images.png</PackageIcon>
 		<Title>CrossCalendarMAUI</Title>
+		<Version>1.0.3</Version>
+		<Authors>Salajan Vadim</Authors>
+		<Description>Calendar .NET MAUI</Description>
+		<Copyright>SVC</Copyright>
+		<RepositoryUrl>https://github.com/VadimSalajan/CrossCalendarMAUI</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
