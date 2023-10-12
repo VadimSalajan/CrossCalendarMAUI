@@ -52,8 +52,10 @@ namespace CrossCalendarMAUI
 
         private async void ButtonSetDate_Clicked(object sender, EventArgs e)
         {
+            if (ClickedDate is null) return;
             ClickedDate.Invoke(sender, e);
             var btn = sender as Button;
+            if(btn is null) return;
             SelectedDate = DateTime.Parse(btn.AutomationId);
             if (ShowOnlyListDates)
             {

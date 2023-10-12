@@ -67,7 +67,7 @@
                     VerticalOptions="Center"
                     HeightRequest="48"
                     WidthRequest="48"
-                    TranslationX="60"
+                    TranslationX="70"
                     />
         <Button Clicked="ButtonNextDate_Clicked"
                     BackgroundColor="Transparent"
@@ -77,7 +77,7 @@
                     VerticalOptions="Center"
                     HeightRequest="48"
                     WidthRequest="48"
-                    TranslationX="60"
+                    TranslationX="70"
                     />
         <Label x:Name="titleLabel" 
                x:FieldModifier="public"
