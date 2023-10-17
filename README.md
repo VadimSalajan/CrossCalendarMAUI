@@ -12,7 +12,7 @@
 
     private void Calendar_ClickedDate(object sender, EventArgs e)
     {
-        //throw new NotImplementedException();
+        var btn = sender as CustomButton; //changed button in customButton, because are bugs style in MAC from .NET MAUI in Release Apple Store
     }
 
     private async void BtnOpen_Calendar(object sender, EventArgs e)
