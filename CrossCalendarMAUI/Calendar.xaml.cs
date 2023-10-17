@@ -1,4 +1,5 @@
-﻿using CrossCalendarMAUI.Data;
+﻿using CrossCalendarMAUI.Components;
+using CrossCalendarMAUI.Data;
 using CrossCalendarMAUI.Services;
 
 namespace CrossCalendarMAUI
@@ -54,7 +55,7 @@ namespace CrossCalendarMAUI
         {
             if (ClickedDate is null) return;
             ClickedDate.Invoke(sender, e);
-            var btn = sender as Button;
+            var btn = sender as CustomButton;
             if(btn is null) return;
             SelectedDate = DateTime.Parse(btn.AutomationId);
             if (ShowOnlyListDates)

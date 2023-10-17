@@ -16,7 +16,7 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>CrossCalendarMAUI</Title>
-		<Version>1.0.7</Version>
+		<Version>1.0.8</Version>
 		<Authors>Salajan Vadim</Authors>
 		<Description>Calendar .NET MAUI</Description>
 		<Copyright>SVC</Copyright>
