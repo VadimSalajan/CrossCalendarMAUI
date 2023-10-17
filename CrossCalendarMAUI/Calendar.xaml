@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:data="clr-namespace:CrossCalendarMAUI.Data"
+    xmlns:cmp="clr-namespace:CrossCalendarMAUI.Components"
     Margin="20"
     Padding="10,10,10,40"
     BackgroundColor="#F5F6FA"
@@ -11,18 +12,6 @@
     <Frame.BindingContext>
         <data:ContextCalendar x:Name="Context" x:FieldModifier="public" />
     </Frame.BindingContext>
-    <Frame.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Button">
-                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst='18',Android='14',iOS='14',WinUI='14'}" />
-                <Setter Property="BorderColor" Value="Transparent"/>
-                <Setter Property="Padding" Value="0"/>
-            </Style>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst='19',Android='15',iOS='15',WinUI='15'}" />
-            </Style>
-        </ResourceDictionary>
-    </Frame.Resources>
     <Grid RowDefinitions="{OnIdiom Desktop='148,48,48,48,48,48,48,48',Tablet='148,44,44,44,44,44,44,44',Phone='148,44,44,44,44,44,44,44'}"
           ColumnDefinitions="{OnIdiom Desktop='48,48,48,48,48,48,48',Tablet='44,44,44,44,44,44,44',Phone='44,44,44,44,44,44,44'}"
           BackgroundColor="Transparent"
@@ -59,7 +48,7 @@
                   Fill="Black"
                   Aspect="Uniform"
                   />
-        <Button Clicked="ButtonPrevDate_Clicked"
+        <cmp:CustomButton Clicked="ButtonPrevDate_Clicked"
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
                     Grid.Column="2"
@@ -69,7 +58,7 @@
                     WidthRequest="48"
                     TranslationX="70"
                     />
-        <Button Clicked="ButtonNextDate_Clicked"
+        <cmp:CustomButton Clicked="ButtonNextDate_Clicked"
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
                     Grid.Column="4"
@@ -79,7 +68,7 @@
                     WidthRequest="48"
                     TranslationX="70"
                     />
-        <Label x:Name="titleLabel" 
+        <cmp:CustomLabel x:Name="titleLabel" 
                x:FieldModifier="public"
                Grid.Row="1" 
                Grid.ColumnSpan="7"
@@ -89,50 +78,50 @@
                VerticalTextAlignment="Center"
                Text="{Binding Title}"
                />
-        <Label Grid.Row="2" Grid.Column="0"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="0"
                Text="{Binding Sunday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" Grid.Column="1"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="1"
                Text="{Binding Monday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" Grid.Column="2"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="2"
                Text="{Binding Tuesday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" Grid.Column="3"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="3"
                Text="{Binding Wednesday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" Grid.Column="4"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="4"
                Text="{Binding Thursday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" Grid.Column="5"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="5"
                Text="{Binding Friday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" 
+        <cmp:CustomLabel Grid.Row="2" 
                Grid.Column="6"
                Text="{Binding Saturday}"
                
                TextColor="Black"
                HorizontalTextAlignment="Center"
                />
-        <Label Grid.Row="2" Grid.Column="0"
+        <cmp:CustomLabel Grid.Row="2" Grid.Column="0"
                Text="{Binding Sunday}"
                
                TextColor="Black"
@@ -145,7 +134,7 @@
                  VerticalOptions="Center"
                />
 
-        <Button Grid.Row="3" Text="{Binding Event00Text}"
+        <cmp:CustomButton Grid.Row="3" Text="{Binding Event00Text}"
                     AutomationId="{Binding Event00AutomationId}"
                     TextColor="{Binding Event00TextColor}"
                     BackgroundColor="{Binding Event00BackgroundColor}"
@@ -154,7 +143,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="3" Grid.Column="1" Text="{Binding Event01Text}"
+        <cmp:CustomButton Grid.Row="3" Grid.Column="1" Text="{Binding Event01Text}"
                     AutomationId="{Binding Event01AutomationId}"
                     TextColor="{Binding Event01TextColor}"
                     BackgroundColor="{Binding Event01BackgroundColor}"
@@ -163,7 +152,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="3" Grid.Column="2" Text="{Binding Event02Text}"
+        <cmp:CustomButton Grid.Row="3" Grid.Column="2" Text="{Binding Event02Text}"
                     AutomationId="{Binding Event02AutomationId}"
                     TextColor="{Binding Event02TextColor}"
                     BackgroundColor="{Binding Event02BackgroundColor}"
@@ -172,7 +161,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="3" Grid.Column="3" Text="{Binding Event03Text}"
+        <cmp:CustomButton Grid.Row="3" Grid.Column="3" Text="{Binding Event03Text}"
                     AutomationId="{Binding Event03AutomationId}"
                     TextColor="{Binding Event03TextColor}"
                     BackgroundColor="{Binding Event03BackgroundColor}"
@@ -181,7 +170,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="3" Grid.Column="4" Text="{Binding Event04Text}"
+        <cmp:CustomButton Grid.Row="3" Grid.Column="4" Text="{Binding Event04Text}"
                     AutomationId="{Binding Event04AutomationId}"
                     TextColor="{Binding Event04TextColor}"
                     BackgroundColor="{Binding Event04BackgroundColor}"
@@ -190,7 +179,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="3" Grid.Column="5" Text="{Binding Event05Text}"
+        <cmp:CustomButton Grid.Row="3" Grid.Column="5" Text="{Binding Event05Text}"
                     AutomationId="{Binding Event05AutomationId}"
                     TextColor="{Binding Event05TextColor}"
                     BackgroundColor="{Binding Event05BackgroundColor}"
@@ -199,7 +188,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="3" Grid.Column="6" Text="{Binding Event06Text}"
+        <cmp:CustomButton Grid.Row="3" Grid.Column="6" Text="{Binding Event06Text}"
                     AutomationId="{Binding Event06AutomationId}"
                     TextColor="{Binding Event06TextColor}"
                     BackgroundColor="{Binding Event06BackgroundColor}"
@@ -208,7 +197,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Text="{Binding Event10Text}"
+        <cmp:CustomButton Grid.Row="4" Text="{Binding Event10Text}"
                     AutomationId="{Binding Event10AutomationId}"
                     TextColor="{Binding Event10TextColor}"
                     BackgroundColor="{Binding Event10BackgroundColor}"
@@ -217,7 +206,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Grid.Column="1" Text="{Binding Event11Text}"
+        <cmp:CustomButton Grid.Row="4" Grid.Column="1" Text="{Binding Event11Text}"
                     AutomationId="{Binding Event11AutomationId}"
                     TextColor="{Binding Event11TextColor}"
                     BackgroundColor="{Binding Event11BackgroundColor}"
@@ -226,7 +215,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Grid.Column="2" Text="{Binding Event12Text}"
+        <cmp:CustomButton Grid.Row="4" Grid.Column="2" Text="{Binding Event12Text}"
                     AutomationId="{Binding Event12AutomationId}"
                     TextColor="{Binding Event12TextColor}"
                     BackgroundColor="{Binding Event12BackgroundColor}"
@@ -235,7 +224,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Grid.Column="3" Text="{Binding Event13Text}"
+        <cmp:CustomButton Grid.Row="4" Grid.Column="3" Text="{Binding Event13Text}"
                     AutomationId="{Binding Event13AutomationId}"
                     TextColor="{Binding Event13TextColor}"
                     BackgroundColor="{Binding Event13BackgroundColor}"
@@ -244,7 +233,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Grid.Column="4" Text="{Binding Event14Text}"
+        <cmp:CustomButton Grid.Row="4" Grid.Column="4" Text="{Binding Event14Text}"
                     AutomationId="{Binding Event14AutomationId}"
                     TextColor="{Binding Event14TextColor}"
                     BackgroundColor="{Binding Event14BackgroundColor}"
@@ -253,7 +242,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Grid.Column="5" Text="{Binding Event15Text}"
+        <cmp:CustomButton Grid.Row="4" Grid.Column="5" Text="{Binding Event15Text}"
                     AutomationId="{Binding Event15AutomationId}"
                     TextColor="{Binding Event15TextColor}"
                     BackgroundColor="{Binding Event15BackgroundColor}"
@@ -262,7 +251,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="4" Grid.Column="6" Text="{Binding Event16Text}"
+        <cmp:CustomButton Grid.Row="4" Grid.Column="6" Text="{Binding Event16Text}"
                     AutomationId="{Binding Event16AutomationId}"
                     TextColor="{Binding Event16TextColor}"
                     BackgroundColor="{Binding Event16BackgroundColor}"
@@ -271,7 +260,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Text="{Binding Event20Text}"
+        <cmp:CustomButton Grid.Row="5" Text="{Binding Event20Text}"
                     AutomationId="{Binding Event20AutomationId}"
                     TextColor="{Binding Event20TextColor}"
                     BackgroundColor="{Binding Event20BackgroundColor}"
@@ -280,7 +269,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Grid.Column="1" Text="{Binding Event21Text}"
+        <cmp:CustomButton Grid.Row="5" Grid.Column="1" Text="{Binding Event21Text}"
                     AutomationId="{Binding Event21AutomationId}"
                     TextColor="{Binding Event21TextColor}"
                     BackgroundColor="{Binding Event21BackgroundColor}"
@@ -289,7 +278,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Grid.Column="2" Text="{Binding Event22Text}"
+        <cmp:CustomButton Grid.Row="5" Grid.Column="2" Text="{Binding Event22Text}"
                     AutomationId="{Binding Event22AutomationId}"
                     TextColor="{Binding Event22TextColor}"
                     BackgroundColor="{Binding Event22BackgroundColor}"
@@ -298,7 +287,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Grid.Column="3" Text="{Binding Event23Text}"
+        <cmp:CustomButton Grid.Row="5" Grid.Column="3" Text="{Binding Event23Text}"
                     AutomationId="{Binding Event23AutomationId}"
                     TextColor="{Binding Event23TextColor}"
                     BackgroundColor="{Binding Event23BackgroundColor}"
@@ -307,7 +296,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Grid.Column="4" Text="{Binding Event24Text}"
+        <cmp:CustomButton Grid.Row="5" Grid.Column="4" Text="{Binding Event24Text}"
                     AutomationId="{Binding Event24AutomationId}"
                     TextColor="{Binding Event24TextColor}"
                     BackgroundColor="{Binding Event24BackgroundColor}"
@@ -316,7 +305,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Grid.Column="5" Text="{Binding Event25Text}"
+        <cmp:CustomButton Grid.Row="5" Grid.Column="5" Text="{Binding Event25Text}"
                     AutomationId="{Binding Event25AutomationId}"
                     TextColor="{Binding Event25TextColor}"
                     BackgroundColor="{Binding Event25BackgroundColor}"
@@ -325,7 +314,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="5" Grid.Column="6" Text="{Binding Event26Text}"
+        <cmp:CustomButton Grid.Row="5" Grid.Column="6" Text="{Binding Event26Text}"
                     AutomationId="{Binding Event26AutomationId}"
                     TextColor="{Binding Event26TextColor}"
                     BackgroundColor="{Binding Event26BackgroundColor}"
@@ -334,7 +323,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Text="{Binding Event30Text}"
+        <cmp:CustomButton Grid.Row="6" Text="{Binding Event30Text}"
                     AutomationId="{Binding Event30AutomationId}"
                     TextColor="{Binding Event30TextColor}"
                     BackgroundColor="{Binding Event30BackgroundColor}"
@@ -343,7 +332,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Grid.Column="1" Text="{Binding Event31Text}"
+        <cmp:CustomButton Grid.Row="6" Grid.Column="1" Text="{Binding Event31Text}"
                     AutomationId="{Binding Event31AutomationId}"
                     TextColor="{Binding Event31TextColor}"
                     BackgroundColor="{Binding Event31BackgroundColor}"
@@ -352,7 +341,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Grid.Column="2" Text="{Binding Event32Text}"
+        <cmp:CustomButton Grid.Row="6" Grid.Column="2" Text="{Binding Event32Text}"
                     AutomationId="{Binding Event32AutomationId}"
                     TextColor="{Binding Event32TextColor}"
                     BackgroundColor="{Binding Event32BackgroundColor}"
@@ -361,7 +350,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Grid.Column="3" Text="{Binding Event33Text}"
+        <cmp:CustomButton Grid.Row="6" Grid.Column="3" Text="{Binding Event33Text}"
                     AutomationId="{Binding Event33AutomationId}"
                     TextColor="{Binding Event33TextColor}"
                     BackgroundColor="{Binding Event33BackgroundColor}"
@@ -370,7 +359,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Grid.Column="4" Text="{Binding Event34Text}"
+        <cmp:CustomButton Grid.Row="6" Grid.Column="4" Text="{Binding Event34Text}"
                     AutomationId="{Binding Event34AutomationId}"
                     TextColor="{Binding Event34TextColor}"
                     BackgroundColor="{Binding Event34BackgroundColor}"
@@ -379,7 +368,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Grid.Column="5" Text="{Binding Event35Text}"
+        <cmp:CustomButton Grid.Row="6" Grid.Column="5" Text="{Binding Event35Text}"
                     AutomationId="{Binding Event35AutomationId}"
                     TextColor="{Binding Event35TextColor}"
                     BackgroundColor="{Binding Event35BackgroundColor}"
@@ -388,7 +377,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="6" Grid.Column="6" Text="{Binding Event36Text}"
+        <cmp:CustomButton Grid.Row="6" Grid.Column="6" Text="{Binding Event36Text}"
                     AutomationId="{Binding Event36AutomationId}"
                     TextColor="{Binding Event36TextColor}"
                     BackgroundColor="{Binding Event36BackgroundColor}"
@@ -397,7 +386,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Text="{Binding Event40Text}"
+        <cmp:CustomButton Grid.Row="7" Text="{Binding Event40Text}"
                     AutomationId="{Binding Event40AutomationId}"
                     TextColor="{Binding Event40TextColor}"
                     BackgroundColor="{Binding Event40BackgroundColor}"
@@ -406,7 +395,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Grid.Column="1" Text="{Binding Event41Text}"
+        <cmp:CustomButton Grid.Row="7" Grid.Column="1" Text="{Binding Event41Text}"
                     AutomationId="{Binding Event41AutomationId}"
                     TextColor="{Binding Event41TextColor}"
                     BackgroundColor="{Binding Event41BackgroundColor}"
@@ -415,7 +404,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Grid.Column="2" Text="{Binding Event42Text}"
+        <cmp:CustomButton Grid.Row="7" Grid.Column="2" Text="{Binding Event42Text}"
                     AutomationId="{Binding Event42AutomationId}"
                     TextColor="{Binding Event42TextColor}"
                     BackgroundColor="{Binding Event42BackgroundColor}"
@@ -424,7 +413,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Grid.Column="3" Text="{Binding Event43Text}"
+        <cmp:CustomButton Grid.Row="7" Grid.Column="3" Text="{Binding Event43Text}"
                     AutomationId="{Binding Event43AutomationId}"
                     TextColor="{Binding Event43TextColor}"
                     BackgroundColor="{Binding Event43BackgroundColor}"
@@ -433,7 +422,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Grid.Column="4" Text="{Binding Event44Text}"
+        <cmp:CustomButton Grid.Row="7" Grid.Column="4" Text="{Binding Event44Text}"
                     AutomationId="{Binding Event44AutomationId}"
                     TextColor="{Binding Event44TextColor}"
                     BackgroundColor="{Binding Event44BackgroundColor}"
@@ -442,7 +431,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Grid.Column="5" Text="{Binding Event45Text}"
+        <cmp:CustomButton Grid.Row="7" Grid.Column="5" Text="{Binding Event45Text}"
                     AutomationId="{Binding Event45AutomationId}"
                     TextColor="{Binding Event45TextColor}"
                     BackgroundColor="{Binding Event45BackgroundColor}"
@@ -451,7 +440,7 @@
                     
                     Clicked="ButtonSetDate_Clicked"
                     />
-        <Button Grid.Row="7" Grid.Column="6" Text="{Binding Event46Text}"
+        <cmp:CustomButton Grid.Row="7" Grid.Column="6" Text="{Binding Event46Text}"
                     AutomationId="{Binding Event46AutomationId}"
                     TextColor="{Binding Event46TextColor}"
                     BackgroundColor="{Binding Event46BackgroundColor}"
