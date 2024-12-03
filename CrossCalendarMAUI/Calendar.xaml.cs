@@ -60,7 +60,7 @@ namespace CrossCalendarMAUI
             SelectedDate = DateTime.Parse(btn.AutomationId);
             if (ShowOnlyListDates)
             {
-                if (btn.BackgroundColor == Color.FromArgb("#00A8F0"))
+                if (btn.BackgroundColor == _graphic.SelectedColorBtn)
                 {
                     _graphic.ChangeDate(SelectedDate, listDatesCalendar);
                     if (CalIsInPopUp) await Navigation.PopModalAsync();

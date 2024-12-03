@@ -22,5 +22,10 @@ namespace CrossCalendarMAUI
         {
             await PopUp.ShowCalendar(content);
         }
+
+        public Task SetAlarm(DateTime dateTimeSetedAlarm, string NotificationText)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

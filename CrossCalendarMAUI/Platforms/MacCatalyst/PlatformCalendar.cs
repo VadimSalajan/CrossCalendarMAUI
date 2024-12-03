@@ -32,5 +32,10 @@ namespace CrossCalendarMAUI
             };
             Application.Current.OpenWindow(_calendarView.window);
         }
+
+        public Task SetAlarm(DateTime dateTimeSetedAlarm, string NotificationText)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

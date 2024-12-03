@@ -11,5 +11,6 @@ namespace CrossCalendarMAUI.Services
     {
         public Calendar _calendarView { get; set; }
         public Task OpenCalendar(ContentPage content = null);
+        public Task SetAlarm(DateTime dateTimeSetedAlarm, string NotificationText);
     }
 }
