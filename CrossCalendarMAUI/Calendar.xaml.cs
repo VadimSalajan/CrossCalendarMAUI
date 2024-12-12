@@ -16,15 +16,25 @@ namespace CrossCalendarMAUI
         public Window window;
         public Calendar()
         {
+            var DisplayMaxHeight = DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
+            var DisplayMaxWidth = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density;
+            var width = DisplayMaxWidth < DisplayMaxHeight ? DisplayMaxWidth : DisplayMaxHeight;
+            ContextCalendar.CornerRadius = 4;
             InitializeComponent();
             _graphic = new Graphic(Context);
+            Context.Index = width / 7 - 10;
             ShowOnlyListDates = false;
             SelectedDate = DateTime.Now;
-            _graphic.BackGroundColorBtn = Colors.Transparent;
-            _graphic.SelectedColorBtn = Color.FromArgb("#00A8F0");
-            _graphic.ColorTextBtn = Color.FromArgb("#222222");
-            _graphic.SelectedColorTextBtn = Color.FromArgb("#FFFFFF");
-            _graphic.UnSelectedColorTextBtn = Color.FromArgb("#899099");
+            _graphic.BackGroundColorBtnDarkMode = Colors.Transparent;
+            _graphic.BackGroundColorBtnLightMode = Colors.Transparent;
+            _graphic.SelectedColorBtnLightMode = Color.FromArgb("#0047BB");
+            _graphic.SelectedColorBtnDarkMode = Color.FromArgb("#0F7DFF");
+            _graphic.ColorTextBtnLightMode = Color.FromArgb("#222222");
+            _graphic.ColorTextBtnDarkMode = Color.FromArgb("#E2E7E9");
+            _graphic.SelectedColorTextBtnLightMode = Color.FromArgb("#FFFFFF");
+            _graphic.SelectedColorTextBtnDarkMode = Color.FromArgb("#FFFFFF");
+            _graphic.UnSelectedColorTextBtnLightMode = Color.FromArgb("#6C8693");
+            _graphic.UnSelectedColorTextBtnDarkMode = Color.FromArgb("#899099");
             listDatesCalendar = new List<DateCalendar>
             {
                 new DateCalendar { Day = SelectedDate },
@@ -60,7 +70,7 @@ namespace CrossCalendarMAUI
             SelectedDate = DateTime.Parse(btn.AutomationId);
             if (ShowOnlyListDates)
             {
-                if (btn.BackgroundColor == _graphic.SelectedColorBtn)
+                if (btn.BackgroundColor == _graphic.SelectedColorBtnDarkMode || btn.BackgroundColor == _graphic.SelectedColorBtnLightMode)
                 {
                     _graphic.ChangeDate(SelectedDate, listDatesCalendar);
                     if (CalIsInPopUp) await Navigation.PopModalAsync();

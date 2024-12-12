@@ -13,4 +13,18 @@ namespace CrossCalendarMAUI.Services
         public Task OpenCalendar(ContentPage content = null);
         public Task SetAlarm(DateTime dateTimeSetedAlarm, string NotificationText);
     }
+
+    public enum Mode
+    {
+        Text,
+        SelectedText,
+        UnselectedText,
+        BgrColor,
+        SelectedBgr,
+        TitleText,
+        SubTitleText,
+        DaysText,
+        Panel,
+        TintPanel
+    }
 }

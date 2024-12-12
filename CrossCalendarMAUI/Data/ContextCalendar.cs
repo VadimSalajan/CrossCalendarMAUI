@@ -10,6 +10,36 @@ namespace CrossCalendarMAUI.Data
     {
         public static int CornerRadius;
         public string sunday = "Su";
+        public double index = 44;
+        public double Index
+        {
+            get { return index; }
+            set { SetProperty(ref index, value); }
+        }
+
+        public Color daysTextColor = Colors.Transparent;
+
+        public Color DaysTextColor
+        {
+            get { return daysTextColor; }
+            set { SetProperty(ref daysTextColor, value); }
+        }
+
+        public Color panelColor = Colors.Transparent;
+
+        public Color PanelColor
+        {
+            get { return panelColor; }
+            set { SetProperty(ref panelColor, value); }
+        }
+
+        public Color tintPanelColor = Colors.Transparent;
+
+        public Color TintPanelColor
+        {
+            get { return tintPanelColor; }
+            set { SetProperty(ref tintPanelColor, value); }
+        }
 
         public string Sunday
         {
@@ -65,12 +95,36 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref saturday, value); }
         }
 
-        public string title = "";
+        public string title = "Title";
 
         public string Title
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        public Color titleTextColor = Colors.Transparent;
+
+        public Color TitleTextColor
+        {
+            get { return titleTextColor; }
+            set { SetProperty(ref titleTextColor, value); }
+        }
+
+        public string subtitle = "SubTitle";
+
+        public string SubTitle
+        {
+            get { return subtitle; }
+            set { SetProperty(ref subtitle, value); }
+        }
+
+        public Color subTitleTextColor = Colors.Transparent;
+
+        public Color SubTitleTextColor
+        {
+            get { return  subTitleTextColor; }
+            set { SetProperty(ref subTitleTextColor, value); }
         }
 
         public string periodDate = "";

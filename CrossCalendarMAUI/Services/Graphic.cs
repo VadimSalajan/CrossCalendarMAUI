@@ -8,34 +8,83 @@ namespace CrossCalendarMAUI.Services
 {
     public interface IGraphic
     {
-        public Color BackGroundColorBtn { get; set; }
-        public Color SelectedColorBtn { get; set; }
-        public Color ColorTextBtn { get; set; }
-        public Color SelectedColorTextBtn { get; set; }
-        public Color UnSelectedColorTextBtn { get; set; }
+        public Color TitleTextColorLightMode { get; set; }
+        public Color TitleTextColorDarkMode { get; set; }
+        public Color SubTitleTextColorLightMode { get; set; }
+        public Color SubTitleTextColorDarkMode { get; set; }
+        public Color BackGroundColorBtnLightMode { get; set; }
+        public Color BackGroundColorBtnDarkMode { get; set; }
+        public Color SelectedColorBtnLightMode { get; set; }
+        public Color SelectedColorBtnDarkMode { get; set; }
+        public Color ColorTextBtnLightMode { get; set; }
+        public Color ColorTextBtnDarkMode { get; set; }
+        public Color SelectedColorTextBtnLightMode { get; set; }
+        public Color SelectedColorTextBtnDarkMode { get; set; }
+        public Color UnSelectedColorTextBtnLightMode { get; set; }
+        public Color UnSelectedColorTextBtnDarkMode { get; set; }
         public void ChangeDate(DateTime date, List<DateCalendar> dates);
-        public void SetBackGroundColorBtns(Color colorBgr, Color selectedColorBgr);
-        public void SetColorTextBtns(Color colorText, Color selectedColorText, Color unselectedColorText);
-        public void SetCornerRadiusBtns(int CornerRadius);
+        public void SetBackGroundColorBtnsRunTime();
+        public void SetColorTextBtnsRunTime();
+        public void SetCornerRadiusBtnsRunTime(int CornerRadius);
     }
 
     public class Graphic: IGraphic
     {
+        private DateTime _date;
+        private List<DateCalendar> _dates;
         public ContextCalendar _context;
-        public Color BackGroundColorBtn { get; set; }
-        public Color SelectedColorBtn { get; set; }
-        public Color ColorTextBtn { get; set; }
-        public Color SelectedColorTextBtn { get; set; }
-        public Color UnSelectedColorTextBtn { get; set; }
+        public Color PanelColorLightMode { get; set; }
+        public Color PanelColorDarkMode { get; set; }
+        public Color TintPanelColorLightMode { get; set; }
+        public Color TintPanelColorDarkMode { get; set; }
+        public Color DaysTextColorLightMode { get; set; }
+        public Color DaysTextColorDarkMode { get; set; }
+        public Color TitleTextColorLightMode { get; set; }
+        public Color TitleTextColorDarkMode { get; set; }
+        public Color SubTitleTextColorLightMode { get; set; }
+        public Color SubTitleTextColorDarkMode { get; set; }
+        public Color BackGroundColorBtnLightMode { get; set; }
+        public Color BackGroundColorBtnDarkMode { get; set; }
+        public Color SelectedColorBtnLightMode { get; set; }
+        public Color SelectedColorBtnDarkMode { get; set; }
+        public Color ColorTextBtnLightMode { get; set; }
+        public Color ColorTextBtnDarkMode { get; set; }
+        public Color SelectedColorTextBtnLightMode { get; set; }
+        public Color SelectedColorTextBtnDarkMode { get; set; }
+        public Color UnSelectedColorTextBtnLightMode { get; set; }
+        public Color UnSelectedColorTextBtnDarkMode { get; set; }
         public Graphic(ContextCalendar context)
         {
-            _context = context;
+            PanelColorLightMode = Color.FromArgb("#3A4959");
+            PanelColorDarkMode = Color.FromArgb("#000000");
+            TintPanelColorLightMode = Color.FromArgb("#FFFFFF");
+            TintPanelColorDarkMode = Color.FromArgb("#FFFFFF");
+            DaysTextColorLightMode = Color.FromArgb("#161B1D");
+            DaysTextColorDarkMode = Color.FromArgb("#E2E7E9");
+            TitleTextColorLightMode = Color.FromArgb("#161B1D");
+            TitleTextColorDarkMode = Color.FromArgb("#FFFFFF");
+            SubTitleTextColorLightMode = Color.FromArgb("#161B1D");
+            SubTitleTextColorDarkMode = Color.FromArgb("#FFFFFF");
+           _context = context;
+
+            _context.TitleTextColor = GetColor(Mode.TitleText);
+            _context.SubTitleTextColor = GetColor(Mode.SubTitleText);
+            _context.DaysTextColor = GetColor(Mode.DaysText);
+            _context.PanelColor = GetColor(Mode.Panel);
+            _context.TintPanelColor = GetColor(Mode.TintPanel);
         }
+
         public void ChangeDate(DateTime date, List<DateCalendar> dates)
         {
             AppTheme appTheme = Application.Current.RequestedTheme;
+            _date = date;
+            _dates = dates;
             var listDays = ResultDates(date);
-            
+            var SelectedColorBtn = GetColor(Mode.SelectedBgr);
+            var BackGroundColorBtn = GetColor(Mode.BgrColor);
+            var ColorTextBtn = GetColor(Mode.Text);
+            var SelectedColorTextBtn = GetColor(Mode.SelectedText);
+            var UnSelectedColorTextBtn = GetColor(Mode.UnselectedText);
             _context.Event00Text = listDays[0].Skip(0).Take(1).First().Day.ToString();
             _context.Event01Text = listDays[1].Skip(0).Take(1).First().Day.ToString();
             _context.Event02Text = listDays[2].Skip(0).Take(1).First().Day.ToString();
@@ -211,12 +260,26 @@ namespace CrossCalendarMAUI.Services
             _context.Event44Opacity = dates.Where(x => x.Day.Date == listDays[4].Skip(4).Take(1).First().Date).Any() ? (listDays[4].Skip(4).Take(1).First().Month == date.Month ? 1 : 0.8) : 1;
             _context.Event45Opacity = dates.Where(x => x.Day.Date == listDays[5].Skip(4).Take(1).First().Date).Any() ? (listDays[5].Skip(4).Take(1).First().Month == date.Month ? 1 : 0.8) : 1;
             _context.Event46Opacity = dates.Where(x => x.Day.Date == listDays[6].Skip(4).Take(1).First().Date).Any() ? (listDays[6].Skip(4).Take(1).First().Month == date.Month ? 1 : 0.8) : 1;
+          
+            Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;       
         }
 
-        public void SetBackGroundColorBtns(Color colorBgr, Color selectedColorBgr)
+        private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            ChangeDate(_date, _dates);
+            _context.TitleTextColor = GetColor(Mode.TitleText);
+            _context.SubTitleTextColor = GetColor(Mode.SubTitleText);
+            _context.DaysTextColor = GetColor(Mode.DaysText);
+            _context.PanelColor = GetColor(Mode.Panel);
+            _context.TintPanelColor = GetColor(Mode.TintPanel);
+        }
+
+        public void SetBackGroundColorBtnsRunTime()
         {
             var listProprieties = _context.GetType().GetProperties().ToList();
-            object objBgr = BackGroundColorBtn;
+            var colorBgr = GetColor(Mode.BgrColor);
+            var selectedColorBgr = GetColor(Mode.SelectedBgr);
+            object objBgr = colorBgr;
             foreach (var item in listProprieties)
             {
                 if (item.Name.Contains("BackgroundColor")) 
@@ -226,16 +289,17 @@ namespace CrossCalendarMAUI.Services
                     else item.SetValue(_context, selectedColorBgr);
                 }
             }
-            BackGroundColorBtn = colorBgr;
-            SelectedColorBtn = selectedColorBgr;
         }
 
-        public void SetColorTextBtns(Color colorText, Color selectedColorText, Color unselectedColorText)
+        public void SetColorTextBtnsRunTime()
         {
             var listProprieties = _context.GetType().GetProperties().ToList();
-            object objText = ColorTextBtn;
-            object objselectedText = SelectedColorTextBtn;
-            object objunselectedText = UnSelectedColorTextBtn;
+            var colorText = GetColor(Mode.Text);
+            var selectedColorText = GetColor(Mode.SelectedText);
+            var unselectedColorText = GetColor(Mode.UnselectedText);
+            object objText = colorText;
+            object objselectedText = selectedColorText;
+            object objunselectedText = unselectedColorText;
             foreach (var item in listProprieties)
             {
                 if (item.Name.Contains("TextColor"))
@@ -248,12 +312,9 @@ namespace CrossCalendarMAUI.Services
                         item.SetValue(_context, unselectedColorText);
                 }
             }
-            ColorTextBtn = colorText;
-            SelectedColorTextBtn = selectedColorText;
-            UnSelectedColorTextBtn = unselectedColorText;
         }
 
-        public void SetCornerRadiusBtns(int CornerRadius)
+        public void SetCornerRadiusBtnsRunTime(int CornerRadius)
         {
             var listProprieties = _context.GetType().GetProperties().ToList();
             foreach (var item in listProprieties)
@@ -304,6 +365,35 @@ namespace CrossCalendarMAUI.Services
             dates.Add(beginSunday.AddDays(28));
 
             return dates;
+        }
+
+        private Color GetColor(Mode mode)
+        {
+            var IsLight = Application.Current.RequestedTheme == AppTheme.Light;
+            return mode switch
+            {
+                Mode.Text when IsLight => ColorTextBtnLightMode,
+                Mode.Text when !IsLight => ColorTextBtnDarkMode,
+                Mode.SelectedText when IsLight => SelectedColorTextBtnLightMode,
+                Mode.SelectedText when !IsLight => SelectedColorTextBtnDarkMode,
+                Mode.UnselectedText when IsLight => UnSelectedColorTextBtnLightMode,
+                Mode.UnselectedText when !IsLight => UnSelectedColorTextBtnDarkMode,
+                Mode.BgrColor when IsLight => BackGroundColorBtnLightMode,
+                Mode.BgrColor when !IsLight => BackGroundColorBtnDarkMode,
+                Mode.SelectedBgr when IsLight => SelectedColorBtnLightMode,
+                Mode.SelectedBgr when !IsLight => SelectedColorBtnDarkMode,
+                Mode.TitleText when IsLight => TitleTextColorLightMode,
+                Mode.TitleText when !IsLight => TitleTextColorDarkMode,
+                Mode.SubTitleText when IsLight => SubTitleTextColorLightMode,
+                Mode.SubTitleText when !IsLight => SubTitleTextColorDarkMode,
+                Mode.Panel when IsLight => PanelColorLightMode,
+                Mode.Panel when !IsLight => PanelColorDarkMode,
+                Mode.TintPanel when IsLight => TintPanelColorLightMode,
+                Mode.TintPanel when !IsLight => TintPanelColorDarkMode,
+                Mode.DaysText when IsLight => DaysTextColorLightMode,
+                Mode.DaysText when !IsLight => DaysTextColorDarkMode,
+                _ => Colors.Transparent
+            };
         }
     }
 }
