@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,27 @@ namespace CrossCalendarMAUI.Data
     public class ContextCalendar : NotifyLive
     {
         public static int CornerRadius;
-        public string sunday = "Su";
+        public string sunday = GetShortDay(DayOfWeek.Sunday);
         public double index = 44;
+        public static CultureInfo _CultureInfo = new CultureInfo("en-USA");
+
+        private static string GetShortDay(DayOfWeek dayOfWeek)
+        {
+            return _CultureInfo.DateTimeFormat.GetDayName(dayOfWeek)[..2];
+        }
+
+        public void ChangeLanguage(CultureInfo ci)
+        {
+            _CultureInfo = ci;
+            Sunday = GetShortDay(DayOfWeek.Sunday);
+            Monday = GetShortDay(DayOfWeek.Monday);
+            Tuesday = GetShortDay(DayOfWeek.Tuesday);
+            Wednesday = GetShortDay(DayOfWeek.Wednesday);
+            Thursday = GetShortDay(DayOfWeek.Thursday);
+            Friday = GetShortDay(DayOfWeek.Friday);
+            Saturday = GetShortDay(DayOfWeek.Saturday);
+        }
+
         public double Index
         {
             get { return index; }
@@ -47,7 +67,7 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref sunday, value); }
         }
 
-        public string monday = "Mo";
+        public string monday = GetShortDay(DayOfWeek.Monday);
 
         public string Monday
         {
@@ -55,7 +75,7 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref monday, value); }
         }
 
-        public string tuesday = "Tu";
+        public string tuesday = GetShortDay(DayOfWeek.Tuesday);
 
         public string Tuesday
         {
@@ -63,7 +83,7 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref tuesday, value); }
         }
 
-        public string wednesday = "We";
+        public string wednesday = GetShortDay(DayOfWeek.Wednesday);
 
         public string Wednesday
         {
@@ -71,7 +91,7 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref wednesday, value); }
         }
 
-        public string thursday = "Th";
+        public string thursday = GetShortDay(DayOfWeek.Thursday);
 
         public string Thursday
         {
@@ -79,7 +99,7 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref thursday, value); }
         }
 
-        public string friday = "Th";
+        public string friday = GetShortDay(DayOfWeek.Friday);
 
         public string Friday
         {
@@ -87,7 +107,7 @@ namespace CrossCalendarMAUI.Data
             set { SetProperty(ref friday, value); }
         }
 
-        public string saturday = "Sa";
+        public string saturday = GetShortDay(DayOfWeek.Saturday);
 
         public string Saturday
         {

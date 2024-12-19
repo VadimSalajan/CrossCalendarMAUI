@@ -79,6 +79,7 @@ namespace CrossCalendarMAUI.Services
             AppTheme appTheme = Application.Current.RequestedTheme;
             _date = date;
             _dates = dates;
+            _context.DateText = date;
             var listDays = ResultDates(date);
             var SelectedColorBtn = GetColor(Mode.SelectedBgr);
             var BackGroundColorBtn = GetColor(Mode.BgrColor);

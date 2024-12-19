@@ -85,7 +85,7 @@ namespace CrossCalendarMAUI
                 if (CalIsInPopUp) await Navigation.PopModalAsync();
                 else Application.Current.CloseWindow(window);
             }
-            Context.DateText = SelectedDate;
+            //Context.DateText = SelectedDate;
         }
     }
 }
