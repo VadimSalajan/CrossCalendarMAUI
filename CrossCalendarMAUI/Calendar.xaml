@@ -69,7 +69,7 @@
             FontSize="{OnIdiom Phone='17',
                                Default='19'}"
             HorizontalTextAlignment="Center"
-            Text="{Binding Title}"
+            Text="{Binding SubTitle}"
             TextColor="{Binding SubTitleTextColor}"
             VerticalTextAlignment="Center" />
         <Frame

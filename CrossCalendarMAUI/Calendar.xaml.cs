@@ -22,7 +22,7 @@ namespace CrossCalendarMAUI
             ContextCalendar.CornerRadius = 4;
             InitializeComponent();
             _graphic = new Graphic(Context);
-            Context.Index = width / 7 - 10;
+            Context.Index = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop ? 48 : width / 7 - 10;
             ShowOnlyListDates = false;
             SelectedDate = DateTime.Now;
             _graphic.BackGroundColorBtnDarkMode = Colors.Transparent;
